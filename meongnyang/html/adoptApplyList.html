@@ -7,9 +7,6 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <!-- 제이쿼리 import -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <title>adoptApplyList</title>
     <style>
         .tableBox {
             width: 90%;
@@ -21,6 +18,60 @@
             text-align: center;
         }
     </style>
+    <!-- 제이쿼리 import -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>adoptApplyList</title>
+    <script type="module">
+        // Firebase SDK 라이브러리 가져오기
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+        // Firebase 구성 정보 설정
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyAnt7smjuBtwsi6y20klElTxbTevFFRYPI",
+            authDomain: "meongnyang-gang.firebaseapp.com",
+            projectId: "meongnyang-gang",
+            storageBucket: "meongnyang-gang.appspot.com",
+            messagingSenderId: "565921326967",
+            appId: "1:565921326967:web:b67144879e0228bc382372",
+            measurementId: "G-B0VF7QFKRL"
+        };
+
+        // Firebase 인스턴스 초기화
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        let index = 1;
+
+        //리스트 추가하는 코드
+        let docs = await getDocs(collection(db, "applicants"));
+
+        docs.forEach((doc) => {
+            let row = doc.data();
+
+            let petName = row['pet_name'];
+            let petId = row['pet_id'];
+            let name = row['name'];
+            let timestamp = row['date'].toDate();
+            let formattedDate = timestamp.toLocaleDateString();
+            let applicantId = doc.id;
+
+            let temp_html = `
+            <tr>
+                <th scope="row">${index}</th>
+                <td>${petName}</td>
+                <td>${name}</td>
+                <td>${formattedDate}</td>
+            </tr>`;
+
+            index++;
+
+            $('#applicantsList').append(temp_html);
+        })
+    </script>
 </head>
 
 <body>
@@ -30,42 +81,13 @@
             <thead class="table-light">
                 <tr>
                     <th scope="col" width="10%">#</th>
-                    <th scope="col" >펫 이름</th>
-                    <th scope="col" >신청자</th>
+                    <th scope="col">펫 이름</th>
+                    <th scope="col">신청자</th>
                     <th scope="col" width="10%">신청 날짜</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr onclick="window.open('${클릭 후 이동할 경로}')">
-                    <th scope="row">1</th>
-                    <td>냥냥</td>
-                    <td>이희수</td>
-                    <td>2024-04-01</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>냥냥</td>
-                    <td>이희수</td>
-                    <td>2024-04-01</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>냥냥</td>
-                    <td>이희수</td>
-                    <td>2024-04-01</td>
-                </tr>
-                <tr>
-                    <th scope="row">4</th>
-                    <td>냥냥</td>
-                    <td>이희수</td>
-                    <td>2024-04-01</td>
-                </tr>
-                <tr>
-                    <th scope="row">5</th>
-                    <td>냥냥</td>
-                    <td>이희수</td>
-                    <td>2024-04-01</td>
-                </tr>
+            <tbody id="applicantsList">
+
             </tbody>
         </table>
     </div>
