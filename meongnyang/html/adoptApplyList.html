@@ -20,7 +20,14 @@
     </style>
     <!-- 제이쿼리 import -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <title>adoptApplyList</title>
+
+    <script>
+        //리스트 중 하나를 클릭했을 때, 입양 신청자의 신청 리스트를 볼 수 있는 함수
+        function goToApplicantDetailPage(applicantId) {
+            location.href = `applicantDetail.html?applicantId=${applicantId}`;
+        }
+    </script>
+
     <script type="module">
         // Firebase SDK 라이브러리 가져오기
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
@@ -60,7 +67,7 @@
             let applicantId = doc.id;
 
             let temp_html = `
-            <tr>
+            <tr onclick="goToApplicantDetailPage('${applicantId}')">
                 <th scope="row">${index}</th>
                 <td>${petName}</td>
                 <td>${name}</td>
@@ -72,6 +79,8 @@
             $('#applicantsList').append(temp_html);
         })
     </script>
+    <title>adoptApplyList</title>
+
 </head>
 
 <body>
