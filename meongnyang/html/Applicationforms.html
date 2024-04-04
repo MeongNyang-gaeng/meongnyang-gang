@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script>src = "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="module">
         // Firebase SDK 라이브러리 가져오기
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
@@ -26,39 +26,56 @@
             measurementId: "G-B0VF7QFKRL"
         };
 
-
-
+        // Firebase 인스턴스 초기화
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
- 
-        $("form").submit(async function () {
-            let name = $('#name').val();
-        let pet_id = $('#pet_id').val();
-        let pat_name = $('#pat_name').val();
-        let age = $('#age').val();
-        let gender = $('#gender').val();
-        let phone = $('#phone').val();
-        let job = $('#job').val();
-        let has_previous_pet = $('#has_previous_pet').val();
-        let has_other_pets = $('#has_other_pets').val();
-        let adoption_reason = $('#adoption_reason').val();
-         let doc = {
-                'name': name,
-                'pet_id': pet_id,
-                'pat_name': pat_name,
-                'age': age,
-                'gender': gender,
-                'phone': phone,
-                'job': job,
-                'has_previous_pet': has_previous_pet,
-                'has_other_pets': has_other_pets,
-                'adoption_reason': adoption_reason,
-            'date': Date.now() };
-                
 
-            await addDoc(collection(db, "applicants"), doc);
-        })
+        const applicantFormUrlParam = new URLSearchParams(window.location.search);
+        const applicanPetId = applicantFormUrlParam.get('petId');
+
+        let docs = await getDocs(collection(db, "pets"));
+
+        docs.forEach((doc) => {
+            let row = doc.data();
+            let petUniqueId = doc.id;
+
+            if (petUniqueId == applicanPetId) {
+                let pet_id = applicanPetId;
+                let pet_name = row['name'];
+
+                console.log(pet_id);
+                console.log(pet_name);
+
+                $("#submitBtn").click(async function () {
+                    let name = $('#name').val();
+                    let age = $('#age').val();
+                    let gender = $('#gender').val();
+                    let phone = $('#phone').val();
+                    let job = $('#job').val();
+                    let has_previous_pet = $('#has_previous_pet').val();
+                    let has_other_pets = $('#has_other_pets').val();
+                    let adoption_reason = $('#adoption_reason').val();
+                    let doc = {
+                        'name': name,
+                        'pet_id': pet_id,
+                        'pat_name': pet_name,
+                        'age': age,
+                        'gender': gender,
+                        'phone': phone,
+                        'job': job,
+                        'has_previous_pet': has_previous_pet,
+                        'has_other_pets': has_other_pets,
+                        'adoption_reason': adoption_reason,
+                        'date': Date.now()
+                    };
+
+                    console.log(doc);
+
+                    await addDoc(collection(db, "applicants"), doc);
+                })
+            }
+        });
 
 
     </script>
@@ -123,10 +140,8 @@
         <form method="post">
             <div>신청인 정보</div>
 
-            <div class="information" >
+            <div class="information">
                 <p>성명 <input class="infor" type="text" id="name"></p>
-                <p>신청하는 펫 아이디 <input class="infor" type="text" id="pet_id"></p>
-                <p>신청하는 펫 이름<input class="infor" type="text" id="pat_name"></p>
                 <p>연령 <input class="infor" type="text" id="age"></p>
                 <p>성별 남자<input type="radio" value="남자">여자<input type="radio" value="여자">
                 <p>전화번호 <input class="infor" type="text" id="phone"></p>
@@ -152,7 +167,7 @@
                 </div>
             </div>
             <div style="text-align: center;">
-                <input type="submit" value="신청서 제출하기" class="submit_btn">
+                <input type="button" value="신청서 제출하기" class="submit_btn" id="submitBtn">
             </div>
         </form>
     </div>
