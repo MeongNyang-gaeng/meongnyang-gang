@@ -73,6 +73,8 @@
                     console.log(doc);
 
                     await addDoc(collection(db, "applicants"), doc);
+                    alert('신청 완료되었습니다.');
+                    window.location.reload();
                 })
             }
         });
@@ -143,7 +145,7 @@
             <div class="information">
                 <p>성명 <input class="infor" type="text" id="name"></p>
                 <p>연령 <input class="infor" type="text" id="age"></p>
-                <p>성별 남자<input type="radio" value="남자">여자<input type="radio" value="여자">
+                <p>성별 남자<input type="radio" name="gender" id="gender" value="남자">여자<input type="radio" name="gender" id="gender" value="여자">
                 <p>전화번호 <input class="infor" type="text" id="phone"></p>
                 <p>직업 <input class="infor" type="text" id="job"></p>
             </div>
@@ -151,15 +153,15 @@
             <div style="margin-top: 20px;">설문조사</div>
             <div class="survey">
                 <div style="margin-bottom: 12px;">
-                    1.반려동물을 키우신 적이 있습니까?
-                    <span style="float: right;"><input type="radio" value="아니요">아니요</span>
-                    <span style="float: right;"><input type="radio" value="예">예</span>
+                    1. 반려동물을 키우신 적이 있습니까?
+                    <span style="float: right;"><input type="radio" name="has_previous_pet" id="has_previous_pet" value="아니요">아니요</span>
+                    <span style="float: right;"><input type="radio" name="has_previous_pet" id="has_previous_pet" value="예">예</span>
 
                 </div>
                 <div style="margin-bottom: 12px;">
                     2. 현재 집에 다른 동물을 키우고 계십니까?
-                    <span style="float: right;"><input type="radio" value="아니요">아니요</span>
-                    <span style="float: right;"><input type="radio" value="예">예</span>
+                    <span style="float: right;"><input type="radio" name="has_other_pets" id="has_other_pets" value="아니요">아니요</span>
+                    <span style="float: right;"><input type="radio" name="has_other_pets" id="has_other_pets" value="예">예</span>
                 </div>
                 <div>
                     3. 입양을 원하는 이유는 무엇인가요?
