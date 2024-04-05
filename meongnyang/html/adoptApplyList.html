@@ -62,8 +62,7 @@
             let petName = row['pet_name'];
             let petId = row['pet_id'];
             let name = row['name'];
-            let timestamp = row['date'].toDate();
-            let formattedDate = timestamp.toLocaleDateString();
+            let date = row['date'];
             let applicantId = doc.id;
 
             let temp_html = `
@@ -71,7 +70,7 @@
                 <th scope="row">${index}</th>
                 <td>${petName}</td>
                 <td>${name}</td>
-                <td>${formattedDate}</td>
+                <td>${date}</td>
             </tr>`;
 
             index++;
@@ -92,7 +91,7 @@
                     <th scope="col" width="10%">#</th>
                     <th scope="col">펫 이름</th>
                     <th scope="col">신청자</th>
-                    <th scope="col" width="10%">신청 날짜</th>
+                    <th scope="col" width="20%">신청 날짜</th>
                 </tr>
             </thead>
             <tbody id="applicantsList">
