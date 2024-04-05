@@ -43,19 +43,19 @@
 
         // savebtn 클릭되었을 때 수행
         $("#savebtn").click(async function () {
-            let species = $('#species').val()
-            let name = $('#name').val()
-            let age = $('#age').val()
-            let height = $('#height').val()
-            let weight = $('#weight').val()
-            let gender = $('#gender').val()
-            let neutering = $('#neutering').val()
-            let rescue_area = $('#rescue_area').val()
-            let significant = $('#significant').val()
-            let photo = $('#photo').val()
-            let slide_photo1 = $('#slide_photo1').val()
-            let slide_photo2 = $('#slide_photo2').val()
-            let slide_photo3 = $('#slide_photo3').val()
+            let species = $('#species').val();
+            let name = $('#name').val();
+            let age = $('#age').val();
+            let height = $('#height').val();
+            let weight = $('#weight').val();
+            let gender = $('#gender').val();
+            let neutering = $('#neutering').val();
+            let rescue_area = $('#rescue_area').val();
+            let significant = $('#significant').val();
+            let photo = $('#photo').val();
+            let slide_photo1 = $('#slide_photo1').val();
+            let slide_photo2 = $('#slide_photo2').val();
+            let slide_photo3 = $('#slide_photo3').val();
 
             let doc = {
                 'species': species,
@@ -74,9 +74,9 @@
             };
 
             await addDoc(collection(db, "pets"), doc); // db에 카드 저장하기
-            alert('등록 완료되었습니다.')
-            window.location.reload()
-        })
+            alert('등록 완료되었습니다.');
+            window.location.reload();
+        });
     </script>
 
 </head>
@@ -177,9 +177,9 @@
                         </div>
 
                         <div class="col-12">
-                            <label for=" rescue_area" class="form-label">구조 지역</label>
+                            <label for="rescue_area" class="form-label">구조 지역</label>
                             <div class="input-group has-validation">
-                                <input type="text" class="form-control" id=" rescue_area" placeholder="" required="">
+                                <input type="text" class="form-control" id="rescue_area" placeholder="" required="">
                                 <div class="invalid-feedback">
                                     구조지역을 입력해주세요.
                                 </div>
