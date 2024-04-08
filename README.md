@@ -8,5 +8,5 @@
 |:-:|:-:|:-:|:-:|
 |팀장|팀원|팀원|팀원|
 |[@llocr](https://github.com/llocr)|[@shinmink](https://github.com/shinmink)|[@uh1205](https://github.com/uh1205)|[@oyshrimp](https://github.com/oyshrimp)|
-|<img src="https://github.com/O1B4/Client-Quota/assets/105053478/8059957d-3b75-4c6f-8747-943797cd285a" width="200px" />|사진|넣어|보아요|
+|<img src="https://i.postimg.cc/2jZXsTxy/IMG-0892-2.jpg" width="200px" />|<img src="https://i.ibb.co/1RPc2kX/Kakao-Talk-Photo-2022-01-30-13-28-59.jpg" width="200px" />|<img src="https://i.ibb.co/VD5kxrv/Kakao-Talk-Photo-2024-04-08-14-07-18.jpg" width="200px" />|<img src="https://i.ibb.co/hHRNHgv/3472374446041557040.jpg" width="200px" />|
 <br>
