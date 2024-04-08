@@ -1,13 +1,20 @@
+<!-- 입양 신청 리스트 페이지 -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
     <link rel="stylesheet" href="css/main.css">
-    <!-- 부트스트랩 import -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>멍냥갱 | 입양 신청 리스트</title>
+
+    <!-- 부트스트랩 가져오기 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!-- 제이쿼리 가져오기 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <style>
         h2 {
             text-align: center;
@@ -23,13 +30,11 @@
             text-align: center;
         }
     </style>
-    <!-- 제이쿼리 import -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script>
-        //리스트 중 하나를 클릭했을 때, 입양 신청자의 신청 리스트를 볼 수 있는 함수
-        function goToApplicantDetailPage(applicantId) {
-            location.href = `applicantDetail.html?applicantId=${applicantId}`;
+        // 리스트 중 하나를 클릭했을 때, 해당 입양 신청 정보를 볼 수 있는 함수
+        function goToAdoptDetailPage(applicantId) {
+            location.href = `adoptDetail.html?applicantId=${applicantId}`;
         }
     </script>
 
@@ -41,7 +46,6 @@
         import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
         // Firebase 구성 정보 설정
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
         const firebaseConfig = {
             apiKey: "AIzaSyAnt7smjuBtwsi6y20klElTxbTevFFRYPI",
             authDomain: "meongnyang-gang.firebaseapp.com",
@@ -58,7 +62,7 @@
 
         let index = 1;
 
-        //리스트 추가하는 코드
+        // 리스트 추가하는 코드
         let docs = await getDocs(collection(db, "applicants"));
 
         docs.forEach((doc) => {
@@ -71,7 +75,7 @@
             let applicantId = doc.id;
 
             let temp_html = `
-            <tr onclick="goToApplicantDetailPage('${applicantId}')">
+            <tr onclick="goToAdoptDetailPage('${applicantId}')">
                 <th scope="row">${index}</th>
                 <td>${petName}</td>
                 <td>${name}</td>
@@ -83,8 +87,6 @@
             $('#applicantsList').append(temp_html);
         })
     </script>
-    <title>adoptApplyList</title>
-
 </head>
 
 <body>
