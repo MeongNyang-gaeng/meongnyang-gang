@@ -2,13 +2,14 @@
 <html lang="ko">
 
 <head>
+    <link rel="stylesheet" href="css/main.css">
     <!-- 부트스트랩 import -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        h1 {
+        h2 {
             margin-top: 10px;
             text-align: center;
         }
@@ -18,7 +19,7 @@
             padding: 20px 20px 20px 20px;
         }
 
-        #petInfo > p {
+        #petInfo>p {
             margin: auto 10px auto 10px;
         }
 
@@ -34,7 +35,7 @@
             margin: 5px auto 5px auto;
         }
 
-        #surveyBox > p {
+        #surveyBox>p {
             margin: 10px 10px 10px 10px;
             padding: 10px;
         }
@@ -49,15 +50,17 @@
 
         #petInfo {
             display: flex;
-            justify-content: space-between; /* 요소들을 컨테이너 양끝에 배치 */
+            justify-content: space-between;
+            /* 요소들을 컨테이너 양끝에 배치 */
         }
 
         input[type="checkbox"] {
             background-color: red;
-            border: 3px solid #000; /* 테두리를 두껍게 설정 */
-            padding: 2px; /* 체크박스와 테두리 사이의 여백 */
+            border: 3px solid #000;
+            /* 테두리를 두껍게 설정 */
+            padding: 2px;
+            /* 체크박스와 테두리 사이의 여백 */
         }
-
     </style>
 
     <!-- 제이쿼리 import -->
@@ -150,37 +153,73 @@
 </head>
 
 <body>
-    <h1>신청인 정보 보기</h1>
-    <div class="info">
-    <h3>입양 신청한 반려동물</h3>
-    <div class="information" id="petInfo">
-    </div>
-    <br>
+    <header>
+        <!-- 네비게이션 바 -->
+        <nav class="navbar">
+            <div class="container-fluid">
+                <a href="index.html" class="nav-link mb-0 h1 px-5 text-dark">멍냥갱</a>
+                <ul class="nav col-lg-auto me-auto mb-2 justify-content-center mb-md-0">
+                    <li class="nav-item"><a href="index.html" class="nav-link px-2 text-secondary">홈</a></li>
+                    <li class="nav-item"><a href="postPet.html" class="nav-link px-2 text-secondary">주인 찾아주기</a></li>
+                    <li class="nav-item"><a href="adoptApplyList.html" class="nav-link px-2 text-secondary">신청서 리스트</a>
+                    </li>
+                </ul>
+                <form class="d-flex me-lg-5">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-danger" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
 
-    <h3>신청인 정보</h3>
-    <div class="information" id="applicantInfo">
+        <!-- 상단 배너 -->
+        <div class="main">
+            <div class="p-5 mb-4 bg-body-tertiary rounded-3">
+                <div class="container-fluid py-5">
+                    <h1 class="display-5 fw-bold">멍냥갱</h1>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="content">
+        <h2>신청인 정보 보기</h2>
+        <div class="info">
+            <h3>입양 신청한 반려동물</h3>
+            <div class="information" id="petInfo">
+            </div>
+            <br>
 
-    </div>
-    <br>
+            <h3>신청인 정보</h3>
+            <div class="information" id="applicantInfo">
 
-    <h3>설문조사 답변</h3>
-    <div style="margin-bottom: 12px;" class="survey" id="question1">
-        1. 반려동물을 키우신 적이 있습니까? 
-    </div>
+            </div>
+            <br>
 
-    <div style="margin-bottom: 12px;" class="survey" id="question2">
-        2. 현재 집에 다른 동물을 키우고 계십니까?
-    </div>
+            <h3>설문조사 답변</h3>
+            <div style="margin-bottom: 12px;" class="survey" id="question1">
+                1. 반려동물을 키우신 적이 있습니까?
+            </div>
 
-    <div class="survey">
-        3. 입양을 원하는 이유는 무엇인가요?
-        <div id="surveyBox">
+            <div style="margin-bottom: 12px;" class="survey" id="question2">
+                2. 현재 집에 다른 동물을 키우고 계십니까?
+            </div>
 
+            <div class="survey">
+                3. 입양을 원하는 이유는 무엇인가요?
+                <div id="surveyBox">
+
+                </div>
+            </div>
         </div>
     </div>
 
-    </div>
-
+    <footer class="my-5 pt-5 text-body-secondary text-center text-small">
+        <p class="mb-1">© 2024 Meongnyang-gang</p>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">Privacy</a></li>
+            <li class="list-inline-item"><a href="#">Terms</a></li>
+            <li class="list-inline-item"><a href="#">Support</a></li>
+        </ul>
+    </footer>
 </body>
 
 </html>
