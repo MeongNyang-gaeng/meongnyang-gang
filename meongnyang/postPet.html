@@ -1,3 +1,4 @@
+<!-- 펫 등록 페이지 -->
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -42,6 +43,7 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
+
         // savebtn 클릭되었을 때 수행
         $("#savebtn").click(async function () {
             let species = $('#species').val();
@@ -76,11 +78,11 @@
 
             await addDoc(collection(db, "pets"), doc); // db에 카드 저장하기
             alert('등록 완료되었습니다.');
-            window.location.reload();
+            window.location.replace('./index.html'); // 메인 페이지로 이동
         });
     </script>
-
 </head>
+
 <body>
     <header>
         <!-- 네비게이션 바 -->
@@ -265,17 +267,16 @@
                 </form>
             </div>
         </main>
-
-        <footer class="my-5 pt-5 text-body-secondary text-center text-small">
-            <p class="mb-1">© 2024 Meongnyang-gang</p>
-            <ul class="list-inline">
-                <li class="list-inline-item"><a href="#">Privacy</a></li>
-                <li class="list-inline-item"><a href="#">Terms</a></li>
-                <li class="list-inline-item"><a href="#">Support</a></li>
-            </ul>
-        </footer>
     </div>
 
+    <footer class="my-5 pt-5 text-body-secondary text-center text-small">
+        <p class="mb-1">© 2024 Meongnyang-gang</p>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">Privacy</a></li>
+            <li class="list-inline-item"><a href="#">Terms</a></li>
+            <li class="list-inline-item"><a href="#">Support</a></li>
+        </ul>
+    </footer>
 </body>
 
 </html>
