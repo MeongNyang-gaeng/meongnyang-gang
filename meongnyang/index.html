@@ -16,6 +16,41 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <style>
+        h2 {
+            text-align: center;
+            padding-bottom: 10px;
+        }
+
+        .search-box {
+            display: flex;
+            flex-direction: column;
+            /* 세로 방향으로 요소를 배치합니다. */
+            justify-content: center;
+            /* 수직 가운데 정렬합니다. */
+            align-items: center;
+            /* 수평 가운데 정렬합니다. */
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .search-inner {
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            width: 70%;
+        }
+
+        #searchBtn {
+            width: 100px;
+            height: 50px;
+            background-color: pink;
+        }
+
+        #searchInput {
+            width: 500px;
+            border-color: pink;
+        }
+
         .petCard {
             width: 90%;
             width: 1200px;
@@ -85,7 +120,45 @@
             </div>`
 
             $('#card').append(temp_html);
-        })
+        });
+
+        $("#searchBtn").click(async function () {
+            let searchText = $("#searchInput").val();
+
+            let docs = await getDocs(collection(db, "pets"));
+
+            $('#card').empty();
+
+            docs.forEach((doc) => {
+                let row = doc.data();
+                let rescue_area = row['rescue_area'];
+
+                if (rescue_area.includes(searchText)) {
+                    let photo = row['photo'];
+                    let name = row['name'];
+                    let species = row['species'];
+                    let age = row['age'];
+                    let gender = row['gender'];
+                    let petId = doc.id; //강아지의 고유 ID
+
+                    let temp_html = `
+            <div class="col">
+                <div class="card h-100">
+                    <img src="${photo}" alt="..." onclick="goToDetailPage('${petId}')">
+                    <div class="card-body">
+                        <h5 class="card-title">${name}</h5>
+                        <p class="card-text">종 : ${species}</p>
+                        <p class="card-text">성별 : ${gender}</p>
+                        <p class="card-text">나이 : 약 ${age}개월</p>
+                        <p class="card-text">구조 지역 : ${rescue_area}</p>
+                    </div>
+                </div>
+            </div>`
+
+                    $('#card').append(temp_html);
+                }
+            });
+        });
     </script>
 </head>
 
@@ -119,6 +192,15 @@
     </header>
 
     <div class="content">
+        <div class="search-box">
+            <h2>우리 지역 멍냥 찾기</h2>
+            <div class="search-inner">
+                <input class="form-control me-2" type="search" placeholder="지역 이름을 입력해 주세요" aria-label="Search"
+                    id="searchInput">
+                <button class="btn btn-light" id="searchBtn" type="button">클릭</button>
+            </div>
+        </div>
+
         <div class="petCard">
             <div id="card" class="row row-cols-1 row-cols-md-4 g-4"></div>
         </div>
